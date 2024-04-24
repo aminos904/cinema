@@ -1,0 +1,24 @@
+{% extends 'home/default.html' %}
+{% block title %} Liste de(s) administrateur(s) {% endblock %}
+{% block content %}
+<h1>Liste de(s) administrateur(s) :</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nom</th>
+            <th scope="col">USERNAME</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user[0] }}</td>
+            <td>{{ user[1] }}</td>
+            <td>{{ user[2] }}</td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

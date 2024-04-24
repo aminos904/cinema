@@ -1,0 +1,11 @@
+{% extends 'home/default.html' %}
+{% block title %} page d'aceuil {% endblock %}
+{% block content %}
+<h1> Bienvenue dans notre page d'Accueil</h1>
+{% if session %}
+<p>Bonjour {{session['nom']}} ! Vous êtes connecté</p>
+{% else %}
+
+{% endif %}
+
+{% endblock %}

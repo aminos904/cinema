@@ -1,0 +1,29 @@
+{% extends 'home/default.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<h1>Login</h1>
+<div class="container">
+    {% if message == 'error' %}
+        <p class="alert alert-danger" role="alert">Veuillez remplir tous les champs.</p>
+    {% elif message == 'failure1' %}
+        <p class="alert alert-danger" role="alert">Le mot de passe est incorecte</p>        
+    {% elif message == 'failure2' %}
+        <p class="alert alert-danger" role="alert">Ce compte n'existe pas ou un erreur est servnue lors de la connexion!</p>
+    {% elif message == 'success' %}
+        <p class="alert alert-warning" role="alert">Vous êtes connecté(e) !!!</p>
+    {% endif %}
+</div>
+    <form method="post" action="{{ url_for('login') }}">
+        <div class="mb-3">
+            <label for="username" class="form-label">nom d'utilisateur</label>
+            <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" >
+
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">mot de passe</label>
+            <input type="password" class="form-control" id="password" name="password" >
+        </div>
+        <button type="submit" class="btn btn-primary">login</button>
+    </form>
+</div>
+{% endblock %}

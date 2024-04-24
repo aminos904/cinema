@@ -1,0 +1,32 @@
+{% extends 'home/default.html' %}
+{% block title %} Ajouter un événement {% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1> Ajouter un événement</h1>
+    <div class="container">
+        {% if message == 'error' %}
+            <p class="alert alert-danger" role="alert">Tous les champs sont obligatoires.</p>
+        {% elif message == 'success' %}
+            <p class="alert alert-success" role="alert">L'événement a bien été ajouté !</p>
+        {% elif message == 'failure' %}
+            <p class="alert alert-warning" role="alert">Une erreur est survenue, veuillez réessayer plus tard.</p>
+        {% endif %}
+    </div>
+    <form action="{{ url_for('add_event') }}" method="POST" class="container">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Entrez le nom de l'événement" >
+            <label for="name" class="form-label">Nom de l'événement :</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id= "date" name="date" placeholder="Entrez la date de l'événement" >
+            <label for="date" class="form-label">Date de l'événement :</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="place" name="place" placeholder="Entrez le nombre de places pour cet événement" >
+            <label for="place" class="form-label">Nombre de places :</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+</div>
+{% endblock %}
+<!-- les champs required enlevé pour testé le message d'erreur-->

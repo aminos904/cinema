@@ -1,0 +1,30 @@
+{% extends 'home/default.html' %}
+{% block title %} Liste de(s) événement(s) {% endblock %}
+{% block content %}
+<h1>Liste de nos événements :</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nom de l'événement</th>
+            <th scope="col">Date</th>
+            <th scope="col">Nombre de places disponibles</th>
+            <th scope="col">Réserver</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+        <tr>
+            <td>{{ event[0] }}</td>
+            <td>{{ event[1] }}</td>
+            <td>{{ event[2] }}</td>
+            <td>{{ event[3] }}</td>
+            <td>
+                <a href="{{ url_for('reserve_event', name=event[1], place=event[3]) }}" class="btn btn-primary" method="POST">Réserver</a>
+                
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

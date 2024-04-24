@@ -1,0 +1,29 @@
+{% extends 'home/default.html' %}
+{% block title %}Gerer une reservation{% endblock %}
+{% block content %}
+<h1>Gerer une reservation</h1>
+<div class="container">
+    {% if message == 'erreur_champ' %}
+        <p class="alert alert-danger" role="alert">Veuillez remplir tous les champs.</p>
+    {% elif message == 'failure' %}
+        <p class="alert alert-danger" role="alert">Aucune reservation n'est lié à ce compte</p>
+    {% elif message == 'failure2' %}
+        <p class="alert alert-danger" role="alert">erreur</p>
+    {% elif message == 'success' %}
+        <p class="alert alert-warning" role="alert">Réservation annulé !!!</p>
+    {% endif %}
+</div>
+    <form method="post" action="{{ url_for('annulation') }}">
+        <div class="mb-3">
+            <label for="email" class="form-label">adresse courriel:</label>
+            <input type="email" class="form-control" id="email" name="email"  >
+
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">mot de passe</label>
+            <input type="password" class="form-control" id="password" name="password" >
+        </div>
+        <button type="submit" class="btn btn-primary">annuler la réservation</button>
+    </form>
+</div>
+{% endblock %}

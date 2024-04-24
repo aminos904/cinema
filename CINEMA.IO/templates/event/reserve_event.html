@@ -1,0 +1,46 @@
+{% extends 'home/default.html' %}
+{% block title %}Réserver un événement{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Réserver un événement</h1>
+    {%if name != None%}
+    <p>Réservation pour {{ name }}</p>
+    <p>Places disponibles : {{ place }}</p>
+    {% endif %}
+    <div class="container">
+        {% if message == 'erreur_champs' %}
+            <p class="alert alert-danger" role="alert">Tous les champs sont obligatoires.</p>
+        {% elif message == 'reservation_ok' %}
+            <p class="alert alert-success" role="alert">La réservation est confirmée ! Merci.</p>
+        {% elif message == 'erreur_email' %}
+            <p class="alert alert-warning" role="alert">Cette adresse e-mail a déjà été utilisée pour cette réservation.</p>
+        {% elif message == 'erreur_place' %}
+            <p class="alert alert-warning" role="alert">Le nombre de places sélectionné dépasse le nombre de places disponibles !</p>
+        {% elif message == 'error' %}
+            <p class="alert alert-warning" role="alert">last error</p>
+
+        {% endif %}
+    </div>
+    <form action="{{ url_for('reserve_event') }}" method="POST">
+        <input type="hidden" name="event_id" value="{{ event_id }}">
+        <input type="hidden" name="name" value="{{ name }}">
+        <input type="hidden" name="place" value="{{ place }}">
+        <div class="mb-3">
+            <label for="email" class="form-label">Adresse e-mail</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Mot de passe</label>
+            <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <div class="mb-3">
+            <label for="nb_place" class="form-label">Nombre de places à réserver</label>
+            <input type="number" class="form-control" id="nb_place" name="nb_place" min="1">
+        </div>
+        <button type="submit" class="btn btn-primary">Réserver</button>
+    </form>
+</div>
+{% endblock %}
+
+
